@@ -1,9 +1,9 @@
 import {cart,removeFromCart} from '../data/cart.js';
 import {products} from '../data/products.js'
-import { formatCurrency } from './utils/money.js';
+import formatCurrency from './utils/money.js';
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js'
 
 let cartSummaryHTML='';
-
 cart.forEach((cartItem)=>{
     const productId=cartItem.productId;
     let matchingProduct;
@@ -12,6 +12,10 @@ cart.forEach((cartItem)=>{
             matchingProduct=product;
         }
     });
+    const today=dayjs()
+    const dt=today.add(7,'days');
+    console.log(dt.format('dddd, MMMM D'))
+    console.log(dt);
     cartSummaryHTML+=`    <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
             <div class="delivery-date">
                 Delivery date: Tuesday, June 21
